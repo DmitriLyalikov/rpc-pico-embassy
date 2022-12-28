@@ -1,7 +1,7 @@
  <!-- Title -->
 <p align="center">
   <img width=15% src="https://www.svgrepo.com/show/68860/microchip.svg">
-  <h1 align="center">Embassy RP Skeleton</h1>
+  <h1 align="center">rpc-pico-embassy</h1>
 </p>
 
 The **rpc-pico-embassy** repository is a project that implements an embedded RPC for interface bridging utilizing the programmable I/O peripherals on the RP2040.
