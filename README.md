@@ -7,6 +7,11 @@
 The **rpc-pico-embassy** repository is a project that implements an embedded RPC for interface bridging utilizing the programmable I/O peripherals on the RP2040.
 firmware for the [`rp2040`][1] based on the [`embassy`][2] asynchronous embedded development framework for [Rust][3].
 
+This includes the binary application that will run on the RP2040 chip. It will listen for 'RPC' requests from a SPI master.
+An 'RPC' request is a multi byte message that specifies the request-id, interface, payload, and CRC-8. 
+This request will be received and payload data will be written to the TX FIFO to the PIO state machine that implements 
+the desired interface (SMI, SPI, JTAG, I2C, etc..)
+
 It includes all of the [`knurling-rs`][4] tooling ([`defmt`][5], [`defmt-rtt`][5], [`panic-probe`][5], [`flip-link`][6],
 [`probe-run`][7]) to enhance the embedded development process.
 
