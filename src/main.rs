@@ -1,3 +1,14 @@
+/// RP2040 RPC Server for Interface Bridging Application
+/// Author: Dmitri Lyalikov 
+/// Version: 0.1.0
+/// 
+/// This is the binary application that will run on the RP2040 chip. It will listen for 'RPC' requests from a SPI master.
+/// An 'RPC' request is a multi byte message that specifies the request-id, interface, payload, and CRC-8. 
+/// This request will be received and payload data will be written to the TX FIFO to the PIO state machine that implements 
+/// the desired interface (SMI, SPI, JTAG, I2C, etc..)
+/// 
+/// 
+
 #![no_std]
 #![no_main]
 #![feature(type_alias_impl_trait)]
