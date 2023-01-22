@@ -1,3 +1,7 @@
+#![no_std]
+#![no_main]
+#![feature(type_alias_impl_trait)]
+
 /// RP2040 RPC Server for Interface Bridging Application
 /// Author: Dmitri Lyalikov 
 /// Version: 0.1.0
@@ -6,12 +10,6 @@
 /// An 'RPC' request is a multi byte message that specifies the request-id, interface, payload, and CRC-8. 
 /// This request will be received and payload data will be written to the TX FIFO to the PIO state machine that implements 
 /// the desired interface (SMI, SPI, JTAG, I2C, etc..)
-/// 
-/// 
-
-#![no_std]
-#![no_main]
-#![feature(type_alias_impl_trait)]
 
 use defmt::*;
 use embassy_executor::Spawner;
@@ -22,6 +20,8 @@ use embassy_rp::spi::{Blocking, Spi};
 use embassy_rp::{pio_instr_util, spi};
 use embassy_time::{Delay, Duration, Timer};
 use {defmt_rtt as _, panic_probe as _};
+
+
 
 #[embassy_executor::task]
 async fn pio_task_blink(mut sm: PioStateMachineInstance<Pio0, Sm1>, pin: AnyPin) {
@@ -48,15 +48,14 @@ async fn pio_task_blink(mut sm: PioStateMachineInstance<Pio0, Sm1>, pin: AnyPin)
 
     sm.write_instr(relocated.origin() as usize, relocated.code());
     pio_instr_util::exec_jmp(&mut sm, relocated.origin());
-    sm.set_clkdiv(0);
-    // sm.set_clkdiv((125e6 / 20.0 / 2e2 * 256.0) as u32);
+    /// Set clock to ~1KHz
+    sm.set_clkdiv((125e6 / 20.0 / 2e2 * 256.0) as u32);
 
     let pio::Wrap { source, target } = relocated.wrap();
     sm.set_wrap(source, target);
 
-    //     sm.set_clkdiv((125e6 / 20.0 / 2e2 * 256.0) as u32);
     sm.set_enable(true);
-    info!("started");
+    info!("Loaded PIO blink program");
 }
 
 
