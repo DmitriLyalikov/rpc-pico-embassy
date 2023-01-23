@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "Remote debug",
+            "type": "gdb",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "target": "${workspaceRoot}/target/thumbv6em-none-eabi/debug/main", 
+            "gdbpath" : "arm-none-eabi-gdb",
+            "autorun": [
+                "source -v debug.gdb",
+            ]
+        }
+    ]
+}

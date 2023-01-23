@@ -8,11 +8,11 @@ embassy-sync = { git = "https://github.com/fluffware/embassy.git", rev = "488e32
 embassy-executor = { git = "https://github.com/fluffware/embassy.git", rev = "488e3224783abe07b2be8046642fd9b81f5714b9", features = ["defmt", "integrated-timers", "nightly"] }
 embassy-time = { git = "https://github.com/fluffware/embassy.git", rev = "488e3224783abe07b2be8046642fd9b81f5714b9", features = ["defmt", "defmt-timestamp-uptime", "nightly"] }
 embassy-rp = { git = "https://github.com/DmitriLyalikov/embassy.git",  features = ["defmt", "unstable-traits", "nightly", "unstable-pac", "time-driver", "pio", "nightly"] }
-embassy-usb = { git = "https://github.com/fluffware/embassy.git", rev = "488e3224783abe07b2be8046642fd9b81f5714b9", features = ["defmt"] }
+
 embassy-net = { git = "https://github.com/fluffware/embassy.git", rev = "488e3224783abe07b2be8046642fd9b81f5714b9", features = ["defmt", "nightly", "tcp", "dhcpv4", "medium-ethernet", "pool-16", "nightly"] }
 embassy-futures = { git = "https://github.com/fluffware/embassy.git", rev = "488e3224783abe07b2be8046642fd9b81f5714b9" }
 embassy-usb-logger = { git = "https://github.com/fluffware/embassy.git", rev = "488e3224783abe07b2be8046642fd9b81f5714b9" }
-
+embassy-usb = { version = "0.1.0", path = "../../embassy-usb", features = ["defmt"] }
 defmt = "0.3"
 defmt-rtt = "0.3"
 pio = "0.2"
@@ -33,7 +33,7 @@ embedded-io = { version = "0.4.0", features = ["async", "defmt"] }
 embedded-storage = { version = "0.3" }
 static_cell = "1.0.0"
 log = "0.4"
-rp2040-hal = {git = "https://github.com/zaksabeast/rp-hal.git", features=["rt"] }
+
 
 [profile.release]
 debug = true

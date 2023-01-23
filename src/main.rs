@@ -13,14 +13,25 @@
 
 use defmt::*;
 use embassy_executor::Spawner;
-use embassy_rp::gpio::{AnyPin, Pin};
+use embassy_rp::gpio::{AnyPin, Input, Pull, Pin};
+use embassy_rp::pac::resets;
 use embassy_rp::pio::{Pio0, PioPeripherial, PioStateMachine, PioStateMachineInstance, Sm0, Sm1};
 use embassy_rp::relocate::RelocatedProgram;
 use embassy_rp::spi::{Config, Spi};
+use embassy_rp::reset;
+//use embassy_rp::peripherals::SPI1;
+use embassy_rp::pac::resets::regs::Peripherals;
 use embassy_rp::{pio_instr_util};
 use embassy_time::{Duration, Timer};
 use {defmt_rtt as _, panic_probe as _};
+use embassy_rp::peripherals::USB;
+use embassy_rp::usb::Driver;
+use embassy_rp::interrupt;
 
+#[embassy_executor::task]
+async fn logger_task(driver: Driver<'static, USB>) {
+    embassy_usb_logger::run!(1024, log::LevelFilter::Info, driver);
+}
 
 #[embassy_executor::task]
 async fn pio_task_blink(mut sm: PioStateMachineInstance<Pio0, Sm1>, pin: AnyPin) {
@@ -68,20 +79,28 @@ async fn main(spawner: Spawner) {
     let mosi = p.PIN_11;
     let clk = p.PIN_10;
     let cs = p.PIN_13;
+    let mut async_input = Input::new(cs, Pull::Down);
 
     // Configure and Enable our SPI Slave
-    let mut spi = Spi::new(p.SPI1, clk, mosi, miso, cs, p.DMA_CH0, p.DMA_CH1, Config::default());
+  
+    let mut config = Config::default();
+    config.slave = true;
+    let mut spi = Spi::new(p.SPI1, clk, mosi, miso, p.DMA_CH0, p.DMA_CH1, config);
+    //let mut spi = Spi::new(p.SPI1, clk, mosi, miso, config);
     spi.set_slave(true);
-
-
+    
     let pio = p.PIO0;
 
     let (_, _sm0, sm1, ..) = pio.split();
     spawner.spawn(pio_task_blink(sm1, p.PIN_25.degrade())).unwrap();
+    let irq = interrupt::take!(USBCTRL_IRQ);
+    let driver = Driver::new(p.USB, irq);
+    spawner.spawn(logger_task(driver)).unwrap();
 
     loop {
         let tx_buf = [1_u8, 2, 3, 4, 5, 6];
         let mut rx_buf = [0_u8; 6];
+        async_input.wait_for_low().await;
         spi.transfer(&mut rx_buf, &tx_buf).await.unwrap();
         info!("{:?}", rx_buf);
         Timer::after(Duration::from_secs(1)).await; 

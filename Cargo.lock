@@ -358,7 +358,7 @@ checksum = "90e5c1c8368803113bf0c9584fc495a58b86dc8a29edbf8fe877d21d9507e797"
 [[package]]
 name = "embassy-cortex-m"
 version = "0.1.0"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 dependencies = [
  "atomic-polyfill 1.0.1",
  "cfg-if",
@@ -373,7 +373,7 @@ dependencies = [
 [[package]]
 name = "embassy-embedded-hal"
 version = "0.1.0"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 dependencies = [
  "embassy-sync 0.1.0 (git+https://github.com/DmitriLyalikov/embassy.git)",
  "embedded-hal 0.2.7",
@@ -402,7 +402,7 @@ dependencies = [
 [[package]]
 name = "embassy-executor"
 version = "0.1.1"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 dependencies = [
  "atomic-polyfill 1.0.1",
  "cfg-if",
@@ -420,12 +420,12 @@ source = "git+https://github.com/fluffware/embassy.git?rev=488e3224783abe07b2be8
 [[package]]
 name = "embassy-futures"
 version = "0.1.0"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 
 [[package]]
 name = "embassy-hal-common"
 version = "0.1.0"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 dependencies = [
  "defmt",
  "num-traits",
@@ -445,7 +445,7 @@ dependencies = [
 [[package]]
 name = "embassy-macros"
 version = "0.1.0"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 dependencies = [
  "darling",
  "proc-macro2",
@@ -477,7 +477,7 @@ dependencies = [
 [[package]]
 name = "embassy-rp"
 version = "0.1.0"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 dependencies = [
  "atomic-polyfill 1.0.1",
  "cfg-if",
@@ -537,7 +537,6 @@ dependencies = [
  "panic-probe",
  "pio",
  "pio-proc",
- "rp2040-hal",
  "st7789",
  "static_cell",
 ]
@@ -559,7 +558,7 @@ dependencies = [
 [[package]]
 name = "embassy-sync"
 version = "0.1.0"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 dependencies = [
  "cfg-if",
  "critical-section 1.1.1",
@@ -587,7 +586,7 @@ dependencies = [
 [[package]]
 name = "embassy-time"
 version = "0.1.0"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 dependencies = [
  "atomic-polyfill 1.0.1",
  "cfg-if",
@@ -623,7 +622,7 @@ dependencies = [
 [[package]]
 name = "embassy-usb-driver"
 version = "0.1.0"
-source = "git+https://github.com/DmitriLyalikov/embassy.git#dadb5f186159f9afdc84834a7c5f7b65dbabff68"
+source = "git+https://github.com/DmitriLyalikov/embassy.git#8b5688c879eec6b49c7f16c4e8a3c52e0fc44fa6"
 dependencies = [
  "defmt",
 ]
@@ -640,15 +639,6 @@ dependencies = [
  "log",
  "static_cell",
  "usbd-hid",
-]
-
-[[package]]
-name = "embedded-dma"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "994f7e5b5cb23521c22304927195f236813053eb9c065dd2226a32ba64695446"
-dependencies = [
- "stable_deref_trait",
 ]
 
 [[package]]
@@ -793,15 +783,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
 
 [[package]]
-name = "fugit"
-version = "0.3.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7ab17bb279def6720d058cb6c052249938e7f99260ab534879281a95367a87e5"
-dependencies = [
- "gcd",
-]
-
-[[package]]
 name = "futures"
 version = "0.3.25"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -873,12 +854,6 @@ dependencies = [
  "pin-project-lite",
  "pin-utils",
 ]
-
-[[package]]
-name = "gcd"
-version = "2.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1d758ba1b47b00caf47f24925c0074ecb20d6dfcffe7f6d53395c0465674841a"
 
 [[package]]
 name = "generic-array"
@@ -1328,49 +1303,6 @@ name = "regex-syntax"
 version = "0.6.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "456c603be3e8d448b072f410900c09faf164fbce2d480456f50eea6e25f9c848"
-
-[[package]]
-name = "rp2040-hal"
-version = "0.7.0"
-source = "git+https://github.com/zaksabeast/rp-hal.git#33dd1c6f6abcdccb838a38bbf9fe409b211990d7"
-dependencies = [
- "cortex-m",
- "critical-section 1.1.1",
- "embedded-dma",
- "embedded-hal 0.2.7",
- "fugit",
- "itertools",
- "nb 1.0.0",
- "paste",
- "pio",
- "rand_core",
- "rp2040-hal-macros",
- "rp2040-pac",
- "usb-device",
- "vcell",
- "void",
-]
-
-[[package]]
-name = "rp2040-hal-macros"
-version = "0.1.0"
-source = "git+https://github.com/zaksabeast/rp-hal.git#33dd1c6f6abcdccb838a38bbf9fe409b211990d7"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
-]
-
-[[package]]
-name = "rp2040-pac"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9192cafbb40d717c9e0ddf767aaf9c69fee1b4e48d22ed853b57b11f6d9f3d7e"
-dependencies = [
- "cortex-m",
- "cortex-m-rt",
- "vcell",
-]
 
 [[package]]
 name = "rp2040-pac2"
